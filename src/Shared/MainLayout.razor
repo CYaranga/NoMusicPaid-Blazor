@@ -7,8 +7,24 @@
     <MudAppBar Elevation="1">
         <MudText Typo="Typo.h5" Class="ml-3">No Music Paid</MudText>
         <MudSpacer />
-        <MudButton Variant="Variant.Outlined" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Primary" Class="mr-2">Login</MudButton>
-        <MudButton Variant="Variant.Filled" StartIcon="@Icons.Material.Filled.Delete" Color="Color.Primary">SignUp</MudButton>
+
+
+        @foreach (var item in dataPages)
+        {
+            <MudButton Variant="Variant.Text" Class="mr-2" OnClick="()=>CurrentPage=item.Key">
+                @if (CurrentPage == item.Key)
+                {
+                    <MudText Typo="Typo.button">@item.Value.title</MudText>
+                }
+                else
+                {
+                    <MudText Typo="Typo.button" Style="@($"color:{Colors.Grey.Darken1}")">@item.Value.title</MudText>
+                }
+            </MudButton>
+        }
+
+        <MudButton Variant="Variant.Outlined" Color="Color.Primary" Class="mr-2">Log in</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary">Sign Up</MudButton>
     </MudAppBar>
     <MudMainContent>
         @Body
@@ -27,4 +43,17 @@
             AppbarBackground = "#0F0F0F",
         }
     };
+
+    public Pages_enum CurrentPage { get; set; } = Pages_enum.Home;
+    public Dictionary<Pages_enum, Pages> dataPages = new();
+
+    protected async override Task OnInitializedAsync()
+    {
+        //dataPages.Add(Pages_enum.Home, new Pages(Pages_enum.Home, "Home"));
+        dataPages.Add(Pages_enum.Music, new Pages(Pages_enum.Music, "Music"));
+        dataPages.Add(Pages_enum.Sound_effects, new Pages(Pages_enum.Sound_effects, "SoundEffects"));
+        dataPages.Add(Pages_enum.License_model, new Pages(Pages_enum.License_model, "LicenseModel"));
+        dataPages.Add(Pages_enum.Pricing, new Pages(Pages_enum.Pricing, "Pricing"));
+        await base.OnInitializedAsync();
+    }
 }
