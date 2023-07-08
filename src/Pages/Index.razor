@@ -1,5 +1,6 @@
 ﻿@page "/"
 @using Components.Genres
+@inject HttpClient Http
 
 <div class="d-flex justify-center align-items-center flex-wrap mt-10">
     <MudText Typo="Typo.h2" Align="Align.Center" Style="width: 100%;" Color="Color.Success"><b>Royalty-free music for videos</b></MudText>
@@ -17,3 +18,13 @@
     <GenreButton Genre="Electronica & Dance" Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589e8c7c3db0919edcffe55f590b35f/2f59a26381a96b52f323d776fabf5873.webp"></GenreButton>
     <GenreButton Genre="Film" Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589e8c7c3db0919edcffe55f590b35f/55063c09b92206e5cc0e791fa8e07daf.webp"></GenreButton>
 </div>
+
+
+@code
+{
+    protected override async Task OnInitializedAsync()
+    {
+        var content = await Http.GetStringAsync("data/NoMusicData.csv");
+        Console.WriteLine(content);
+    }
+}

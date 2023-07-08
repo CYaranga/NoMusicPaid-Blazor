@@ -68,3 +68,10 @@ node_modules/
 release
 
 .vscode
+src/obj/
+
+src/bin/
+
+src/.idea/
+
+.idea/
