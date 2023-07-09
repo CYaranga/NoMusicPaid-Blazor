@@ -2,23 +2,106 @@
 @using Components.Genres
 @inject HttpClient Http
 
-<div class="d-flex justify-center align-items-center flex-wrap mt-10">
-    <MudText Typo="Typo.h2" Align="Align.Center" Style="width: 100%;" Color="Color.Success"><b>Royalty-free music for videos</b></MudText>
-    <MudText Typo="Typo.h6" Align="Align.Center" Style="width: 50%">Get unlimited access to our music and sound effects catalog for your videos, streams and podcasts. Our license comes with all necessary rights included.</MudText>
+<div class="d-flex justify-center align-items-center flex-wrap mt-10 text-center" style="height: 100vh;">
+    <MudItem sm="12" class="d-flex justify-center align-items-center flex-wrap mt-10 text-center">
+        <MudText Typo="Typo.h2" Align="Align.Center" Class="align-self-end" Style="width: 100%;" Color="Color.Error">
+            <b>Música sin derechos de autor para tus videos</b></MudText>
+    </MudItem>
+    <MudItem sm="12" class="d-flex justify-center align-items-center flex-wrap mt-10 text-center">
+        <MudText Typo="Typo.h6" Align="Align.Center" Style="width: 50%">Acceso a más de 10000 de canciones libre de
+            derechos de autor</MudText>
+    </MudItem>
+    <MudItem sm="12" Class="d-flex justify-center align-item-center" Style="height: 50px">
+        <MudButton Variant="Variant.Filled" Color="Color.Error">Start Trial</MudButton>
+    </MudItem>
 </div>
 
-<MudSpacer/>
+<MudSpacer />
 
-<div class="d-flex justify-center align-items-center flex-wrap mt-10 pt-10">
-    <MudText Typo="Typo.h3" Align="Align.Center" Style="width: 100%;"><b>Real music, real impact</b></MudText>
-    <MudText Typo="Typo.h6" Align="Align.Center" Style="width: 50%">We work with leading music creators from around the world to bring you exclusive, authentic new tracks on a daily basis</MudText>
-</div>
+@* <div class="d-flex justify-center align-items-center flex-wrap mt-10">
+<GenreButton Genre="Electronica & Dance"
+Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589e8c7c3db0919edcffe55f590b35f/2f59a26381a96b52f323d776fabf5873.webp"></GenreButton>
+</div> *@
+<MudGrid style="width: 100%">
+    <MudItem xs="6" class="d-flex justify-center align-items-center">
+        <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
+            <MudText Typo="Typo.h3" Align="Align.Center" Class="mr-4 ml-4">
+                <b>Música libre de regalías para descargar o transmitir dentro de una librería de más de 10000 canciones</b>
+            </MudText>
+        </div>
+    </MudItem>
 
-<div class="d-flex justify-center align-items-center flex-wrap mt-10">
-    <GenreButton Genre="Electronica & Dance" Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589e8c7c3db0919edcffe55f590b35f/2f59a26381a96b52f323d776fabf5873.webp"></GenreButton>
-    <GenreButton Genre="Film" Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589e8c7c3db0919edcffe55f590b35f/55063c09b92206e5cc0e791fa8e07daf.webp"></GenreButton>
-</div>
-
+    <MudItem xs="6" class="d-flex">
+        <MudGrid>
+            <MudItem xs="12" class="d-flex">
+                <MudItem xs="3">
+                    <GenreButton GenreName="Sabor Peruano"
+                        Image="images/sabor-peruano.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Effects"
+                        Image="images/effects.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="High Energy"
+                        Image="images/high-energy.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Trailer Epico"
+                        Image="images/trailer-epico.jpeg">
+                    </GenreButton>
+                </MudItem>
+            </MudItem>
+            <MudItem xs="12" class="d-flex">
+                <MudItem xs="3">
+                    <GenreButton GenreName="Aventura"
+                        Image="images/aventura.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Attitude"
+                        Image="images/attitude.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Summer"
+                        Image="images/verano.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Winter"
+                        Image="images/invierno.webp">
+                    </GenreButton>
+                </MudItem>
+            </MudItem>
+            <MudItem xs="12" class="d-flex">
+                <MudItem xs="3">
+                    <GenreButton GenreName="Spring"
+                        Image="images/primavera.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Autumn"
+                        Image="images/otoño.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Jingles"
+                        Image="images/jingle.jpeg">
+                    </GenreButton>
+                </MudItem>
+                <MudItem xs="3">
+                    <GenreButton GenreName="Gospel"
+                        Image="images/gospel.webp">
+                    </GenreButton>
+                </MudItem>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+</MudGrid>
 
 @code
 {
