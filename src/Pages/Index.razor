@@ -24,8 +24,8 @@ Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589
 </div> *@
 <MudGrid style="width: 100%">
     <MudItem xs="6" class="d-flex justify-center align-items-center">
-        <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
-            <MudText Typo="Typo.h3" Align="Align.Center" Class="mr-4 ml-4">
+        <div style="width: 80%; display: flex; justify-content: center; align-items: center;">
+            <MudText Typo="Typo.h3" Align="Align.Center" Class="mr-4 ml-10">
                 <b>Música libre de regalías para descargar o transmitir dentro de una librería de más de 10000 canciones</b>
             </MudText>
         </div>
@@ -104,9 +104,9 @@ Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589
 </MudGrid>
 
 
-<MudGrid xs="6" style="width: 100%; height: 50vh">
+<MudGrid xs="6" Class="d-flex" style="width: 100%; min-height: 50vh">
     <MudItem xs="6" class="d-flex align-center">
-        <MudItem xs="12" class="align-center">
+        <MudItem xs="12" class="align-center ml-16">
             <MudItem xs="12" Class="mt-10">
                 <MudText Typo="Typo.h4" Align="Align.Left" Class="mr-4 ml-4">
                     <b>Prueba gratis</b>
@@ -136,17 +136,175 @@ Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589
 
     <MudItem xs="6" class="d-flex justify-center align-center">
         <MudImage Src="images/producer-rest.jpeg" Alt="Mony the dog" 
-              Height="650" Width="650" Style="max-width: 100%;"
+              Width="650" Style="max-width: 100%; max-height: 50vh;"
               Elevation="25" Class="rounded-lg" ObjectFit="ObjectFit.Cover"/>
     </MudItem>
 </MudGrid>
 
+<MudSpacer/>
+
+
+<MudGrid Class="mt-16" style="width: 100%; height: 50vh">
+    <MudItem xs="12" Class="d-flex" Style="height: 60px">
+        <MudItem xs="8">
+            <MudText Typo="Typo.h3" Align="Align.Start" Class="mr-4 ml-16">
+                <b>Nuestras suscripciones</b>
+            </MudText>
+        </MudItem>
+        <MudItem xs="4" class="d-flex justify-start align-start">
+            <MudButtonGroup Color="Color.Primary" OverrideStyles="false" Variant="Variant.Outlined">
+                <MudButton Style="@mensual" OnClick="@(()=> OnSuscriptionSelect("Mensual"))">Mensual</MudButton>
+                <MudButton Style="@trimestral" OnClick="@(()=> OnSuscriptionSelect("Trimestral"))">Trimestral</MudButton>
+                <MudButton Style="@anual" OnClick="@(()=> OnSuscriptionSelect("Anual"))">Anual</MudButton>
+            </MudButtonGroup>
+        </MudItem>
+    </MudItem>
+    <MudItem xs="12" Class="d-flex justify-center mt-8">
+        <MudGrid  Style="width: 80%">
+            <MudItem xs="4">
+                <MudCard>
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h5"><b>Plan Básico</b></MudText>
+                            <MudText Typo="Typo.h3">
+                                @if(mensual == selectedColor)
+                                {
+                                    <b>$9.99</b>
+                                }
+                                else if(trimestral == selectedColor)
+                                {
+                                    <b>$24.99</b>
+                                }
+                                else if(anual == selectedColor)
+                                {
+                                    <b>$79.99</b>
+                                }
+                            </MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText>•	Acceso completo al catálogo de música peruana libre de regalías.</MudText>
+                        <MudText>•	Descarga ilimitada de pistas en calidad estándar.</MudText>
+                        <MudText>•	Posibilidad de transmitir música en línea sin restricciones.</MudText>
+                        <MudText>•	Interfaz sencilla y fácil de usar.</MudText>
+                        <MudText>•	Actualizaciones periódicas del catálogo.</MudText>
+                    </MudCardContent>
+                    <MudCardActions Class="d-flex justify-center">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary">Start free trial</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="4">
+                <MudCard>
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h5"><b>Plan Premium</b></MudText>
+                            <MudText Typo="Typo.h3">
+                                @if(mensual == selectedColor)
+                                {
+                                    <b>$14.99</b>
+                                }
+                                else if(trimestral == selectedColor)
+                                {
+                                    <b>$39.99</b>
+                                }
+                                else if(anual == selectedColor)
+                                {
+                                    <b>$129.99</b>
+                                }
+                            </MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText>•	Todas las características del Plan Básico.</MudText>
+                        <MudText>•	Descarga ilimitada de pistas en calidad de alta definición.</MudText>
+                        <MudText>•	Descarga de pistas individuales por instrumentos.</MudText>
+                        <MudText>•	Herramientas de edición avanzadas en la plataforma.</MudText>
+                        <MudText>•	Acceso a contenido exclusivo y nuevas incorporaciones antes que otros planes.</MudText>
+                    </MudCardContent>
+                    <MudCardActions Class="d-flex justify-center">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary">Start free trial</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+            <MudItem xs="4">
+                <MudCard>
+                    <MudCardHeader>
+                        <CardHeaderContent>
+                            <MudText Typo="Typo.h5"><b>Plan Empresarial</b></MudText>
+                            <MudText Typo="Typo.h3">
+                                @if(mensual == selectedColor)
+                                {
+                                    <b>$29.99</b>
+                                }
+                                else if(trimestral == selectedColor)
+                                {
+                                    <b>$79.99</b>
+                                }
+                                else if(anual == selectedColor)
+                                {
+                                    <b>$249.99</b>
+                                }
+                            </MudText>
+                        </CardHeaderContent>
+                    </MudCardHeader>
+                    <MudCardContent>
+                        <MudText>•	Todas las características del Plan Premium.</MudText>
+                        <MudText>•	Licencia extendida para uso comercial y proyectos empresariales.</MudText>
+                        <MudText>•	Descarga de pistas en diferentes formatos y calidades según las necesidades técnicas.</MudText>
+                        <MudText>•	Servicio de atención al cliente prioritario.</MudText>
+                        <MudText>•	Personalización de la plataforma y opciones de branding para empresas.</MudText>
+                    </MudCardContent>
+                    <MudCardActions Class="d-flex justify-center">
+                        <MudButton Variant="Variant.Filled" Color="Color.Primary">Start free trial</MudButton>
+                    </MudCardActions>
+                </MudCard>
+            </MudItem>
+        </MudGrid>
+    </MudItem>
+</MudGrid>
+
+
 
 @code
 {
+    string defaultColor = "border: 1px solid white; color: white";
+    string selectedColor = "border: 1px solid red; color: red";
+
+    string mensual = "";
+    string trimestral = "";
+    string anual = "";
+
     protected override async Task OnInitializedAsync()
     {
+        mensual = selectedColor;
+        trimestral = defaultColor;
+        anual = defaultColor;
         //var content = await Http.GetStringAsync("data/NoMusicData.csv");
         //Console.WriteLine(content);
+    }
+
+    private void OnSuscriptionSelect(string suscription)
+    {
+        
+
+        switch (suscription)
+        {
+            case "Mensual":
+                mensual = selectedColor;
+                trimestral = defaultColor;
+                anual = defaultColor;
+                break;
+            case "Trimestral":
+                mensual = defaultColor;
+                trimestral = selectedColor;
+                anual = defaultColor;
+                break;
+            case "Anual":
+                mensual = defaultColor;
+                trimestral = defaultColor;
+                anual = selectedColor;
+                break;
+        }
     }
 }
