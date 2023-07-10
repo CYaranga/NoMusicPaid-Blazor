@@ -1,4 +1,5 @@
 ﻿@page "/"
+@using Components.Genres
 @inject ISnackbar Snackbar
 @inject HttpClient Http
 
@@ -279,8 +280,12 @@ Image="https://www.epidemicsound.com/staticfiles/player/20230509.39-757647594589
 
 
 <div class="d-flex justify-center align-center flex-wrap mx-auto mt-16 mb-16" style="width: 70%; padding-top: 150px; padding-bottom: 150px">
-    <MudText Typo="Typo.h3" Color="Color.Error" Style="width:70%" Align="Align.Center"><b>Que no se te escape nada!</b></MudText>
-    <MudText Typo="Typo.h6">Noticias de la industria, tips, tendencias y más directamente en tu inbox</MudText>
+    <MudItem xs="12" class="d-flex justify-center align-center">
+        <MudText Typo="Typo.h3" Color="Color.Error" Style="width:70%" Align="Align.Center"><b>Que no se te escape nada!</b></MudText>
+    </MudItem>
+    <MudItem xs="12" class="d-flex justify-center align-center">
+        <MudText Typo="Typo.h6">Noticias de la industria, tips, tendencias y más directamente en tu inbox</MudText>
+    </MudItem>
     <MudItem xs="6" class="d-flex justify-center align-center">
         <MudTextField @bind-Value="@mailUser" Label="Email" Variant="Variant.Filled" Color="Color.Primary" Class="mr-4 ml-4" />
         <MudButton Variant="Variant.Filled" Color="Color.Primary" @onclick="@(() => Snackbar.Add("Tu email ha sido registrado", Severity.Info))">Suscribirme</MudButton>

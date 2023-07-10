@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@inject NavigationManager NavigationManager
+
 
 <MudThemeProvider @bind-IsDarkMode="@_isDarkMode" Theme="_theme"/>
 <MudDialogProvider/>
@@ -24,7 +26,7 @@
         }
 
         <MudButton Variant="Variant.Outlined" Color="Color.Error" Class="mr-2">Log in</MudButton>
-        <MudButton Variant="Variant.Filled" Color="Color.Error">Sign Up</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(()=> NavigationManager.NavigateTo("/signup"))">Sign Up</MudButton>
     </MudAppBar>
     <MudMainContent>
         @Body
