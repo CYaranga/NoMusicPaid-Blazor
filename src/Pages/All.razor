@@ -1,0 +1,16 @@
+@page "/allmusic"
+@inject NavigationManager NavigationManager
+
+<ComponentsCustom.NoMusic.TableMusic Path="@path"/>
+
+@code
+{
+    public string path = "";
+    //https://drive.google.com/drive/folders/1LZHYUeTSwdUQ02R6q7xqv-3KXL4bTSPF?usp=sharing
+
+    protected override async Task OnInitializedAsync()
+    {
+        path = $"{NavigationManager.BaseUri}data/all.csv";
+        await Task.CompletedTask;
+    }
+}

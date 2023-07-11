@@ -1,0 +1,45 @@
+@namespace ComponentsCustom.NoMusic
+
+<MudTable Items="@NoMusicList" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@Loading" LoadingProgressColor="Color.Info">
+    <HeaderContent>
+        <MudTh>_</MudTh>
+        <MudTh>Canción</MudTh>
+        <MudTh>Artista</MudTh>
+        <MudTh>BPM</MudTh>
+        <MudTh>Tonalidad</MudTh>
+        <MudTh>Duración</MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="_">
+            <audio controls>
+                <source src="@context.GetEmbedLink()" type="audio/wav">
+            </audio>
+        </MudTd>
+        <MudTd DataLabel="Canción">@context.title</MudTd>
+        <MudTd DataLabel="Artista">@context.artist</MudTd>
+        <MudTd DataLabel="BPM">@context.bpm</MudTd>
+        <MudTd DataLabel="Tonalidad">@context.tone</MudTd>
+        <MudTd DataLabel="Duración">@context.duration</MudTd>
+    </RowTemplate>
+</MudTable>
+
+@code 
+{
+    [Parameter]
+    public string? Path {get; set;}
+
+    public List<NoMusic> NoMusicList {get; set;} = new List<NoMusic>();
+    public bool Loading = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadNoMusic();
+        Loading = false;
+        StateHasChanged();
+    }
+
+    private async Task LoadNoMusic()
+    {
+        NoMusicList = await NoMusic.GetData(path: Path);
+    }
+}

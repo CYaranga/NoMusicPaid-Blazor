@@ -2,6 +2,7 @@ using System.Data;
 using System.Globalization;
 using CsvHelper;
 using CsvHelper.Configuration;
+using CsvHelper.TypeConversion;
 using static System.Net.WebRequestMethods;
 
 namespace NoMusicPaid.Data;
@@ -10,12 +11,14 @@ public class NoMusic
 {
     public string? id;
     public string? title;
-    public NoMusicGenre genre;
-    public List<NoMusicTrack>? tracks;
+    public string? artist;
+    public string? bpm;
+    public string? tone;
+    public string? duration;
 
     public string GetDownloadLink()
     {
-        return $"https://drive.google.com/uc?authuser=0&id={id}&export=download";
+        return $"https://docs.google.com/uc?export=download&id={id}";
     }
 
     public string GetEmbedLink()
@@ -23,13 +26,13 @@ public class NoMusic
         return $"https://docs.google.com/uc?export=download&id={id}";
     }
 
-    public async Task<List<NoMusic>> GetData()
+    public static async Task<List<NoMusic>> GetData(string path)
     {
         var result = new List<NoMusic>();
         try
         {
             using var client = new HttpClient();
-            string content = await client.GetStringAsync("data/NoMusicData.csv");
+            string content = await client.GetStringAsync(path);
 
             using var reader = new StringReader(content);
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
@@ -38,17 +41,28 @@ public class NoMusic
             };
 
             using var csv = new CsvReader(reader, config);
-            using var dr = new CsvDataReader(csv);
-
-            var dt = new DataTable();
-            dt.Load(dr);
-
-            return result;
+            csv.Context.RegisterClassMap<NoMusicMap>();
+            result = csv.GetRecords<NoMusic>().ToList();
         }
-        catch (Exception e)
+        catch (Exception ex)
         {
-            Console.WriteLine(e);
-            return result;
+            Console.WriteLine($"Error from path {path}");
+            Console.WriteLine(ex);
         }
+
+        return result;
+    }
+}
+
+public sealed class NoMusicMap : ClassMap<NoMusic>
+{
+    public NoMusicMap()
+    {
+        Map(m => m.id).Name("id");
+        Map(m => m.title).Name("title");
+        Map(m => m.artist).Name("artist");
+        Map(m => m.bpm).Name("bpm");
+        Map(m => m.tone).Name("tone");
+        Map(m => m.duration).Name("duration");
     }
 }
