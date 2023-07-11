@@ -2,6 +2,7 @@
 @using ComponentsCustom.Genres
 @inject ISnackbar Snackbar
 @inject HttpClient Http
+@inject NavigationManager NavigationManager
 
 <div class="d-flex justify-center align-items-center flex-wrap mt-10 text-center" style="height: 100vh;">
     <MudItem sm="12" class="d-flex justify-center align-items-center flex-wrap mt-10 text-center">
@@ -13,7 +14,7 @@
             derechos de autor</MudText>
     </MudItem>
     <MudItem sm="12" Class="d-flex justify-center align-item-center" Style="height: 50px">
-        <MudButton Variant="Variant.Filled" Color="Color.Error">Start Trial</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Error" OnClick="@(()=> NavigationManager.NavigateTo("/all"))">Start Trial</MudButton>
     </MudItem>
 </div>
 

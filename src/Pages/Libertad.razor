@@ -1,4 +1,4 @@
-@page "/bailar"
+@page "/libertad"
 @inject NavigationManager NavigationManager
 
 
@@ -8,7 +8,7 @@
 </div>
 
 <div class="" style="width: 100%; height: 50px"></div>
-<MudText Typo="Typo.h2" class="mb-6 ml-4"><b>Bailar - Jorge Guardamino</b></MudText>
+<MudText Typo="Typo.h2" class="mb-6 ml-4"><b>Libertad - Jorge Guardamino</b></MudText>
 
 <ComponentsCustom.NoMusic.TableMusic Path="@path"/>
 
@@ -19,7 +19,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        path = $"{NavigationManager.BaseUri}data/Bailar.csv";
+        path = $"{NavigationManager.BaseUri}data/Libertad.csv";
         await Task.CompletedTask;
     }
 }

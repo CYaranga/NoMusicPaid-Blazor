@@ -7,7 +7,8 @@
 <MudSnackbarProvider/>
 <MudLayout>
     <MudAppBar Elevation="1">
-        <MudText Typo="Typo.h5" Class="ml-3">No Music Paid</MudText>
+        @* <MudText Typo="Typo.h5" Class="ml-3" onclick="@(()=> NavigationManager.NavigateTo("/"))">No Music Paid</MudText> *@
+        <MudButton Variant="Variant.Text" Class="ml-3" OnClick="@(()=> NavigationManager.NavigateTo("/"))">No Music Paid</MudButton>
         <MudSpacer />
 
 

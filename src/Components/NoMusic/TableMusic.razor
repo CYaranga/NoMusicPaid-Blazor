@@ -1,25 +1,38 @@
 @namespace ComponentsCustom.NoMusic
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
 
 <MudTable Items="@NoMusicList" Hover="true" Breakpoint="Breakpoint.Sm" Loading="@Loading" LoadingProgressColor="Color.Info">
     <HeaderContent>
-        <MudTh>_</MudTh>
         <MudTh>Canción</MudTh>
         <MudTh>Artista</MudTh>
         <MudTh>BPM</MudTh>
         <MudTh>Tonalidad</MudTh>
         <MudTh>Duración</MudTh>
+        <MudTh>_</MudTh>
     </HeaderContent>
     <RowTemplate>
-        <MudTd DataLabel="_">
-            <audio controls>
-                <source src="@context.GetEmbedLink()" type="audio/wav">
-            </audio>
+        <MudTd DataLabel="Canción">
+            @if(context.title.Contains("wav"))
+            {
+                @context.title.ToUpper()
+            }
+            else
+            {
+                <MudButton Variant="Variant.Text" OnClick="@(()=> NavigationManager.NavigateTo($"/{@context.title.ToLower()}"))">@context.title</MudButton>
+            }
         </MudTd>
-        <MudTd DataLabel="Canción">@context.title</MudTd>
         <MudTd DataLabel="Artista">@context.artist</MudTd>
         <MudTd DataLabel="BPM">@context.bpm</MudTd>
         <MudTd DataLabel="Tonalidad">@context.tone</MudTd>
         <MudTd DataLabel="Duración">@context.duration</MudTd>
+        <MudTd DataLabel="_">
+            <div id="@($"player-{@context.id}")">
+                <audio>
+                    <source src="@context.GetEmbedLink()" type="audio/wav">
+                </audio>
+            </div>
+        </MudTd>
     </RowTemplate>
 </MudTable>
 
@@ -30,12 +43,34 @@
 
     public List<NoMusic> NoMusicList {get; set;} = new List<NoMusic>();
     public bool Loading = true;
+    public bool Initialiced = false;
 
     protected override async Task OnInitializedAsync()
     {
         await LoadNoMusic();
         Loading = false;
         StateHasChanged();
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if(firstRender) return;
+        if(Loading) return;
+        if(!Initialiced)
+        {
+            await InitAudio();
+        }
+    }
+
+    private async Task InitAudio()
+    {
+        Console.WriteLine("InitAudio");
+        Initialiced = true;
+        foreach(var noMusic in NoMusicList)
+        {
+            await Js.InvokeVoidAsync("InitAudio", $"player-{noMusic.id}");
+        }
+        Console.WriteLine("InitAudio Done");
     }
 
     private async Task LoadNoMusic()

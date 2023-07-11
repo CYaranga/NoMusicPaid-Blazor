@@ -1,5 +1,14 @@
-@page "/allmusic"
+@page "/all"
 @inject NavigationManager NavigationManager
+
+
+<div class="d-flex justify-center" style="width: 100%; height: 50vh;">
+    <MudImage Src="images/Music-Producer-Complete-Controller.jpg" Alt="Mony the dog" 
+                    Elevation="25" Class="rounded-lg" ObjectFit="ObjectFit.Cover" Style="width:100%; height:100%;"/>
+</div>
+
+<div class="" style="width: 100%; height: 50px"></div>
+<MudText Typo="Typo.h2" class="mb-6 ml-4"><b>Canciones</b></MudText>
 
 <ComponentsCustom.NoMusic.TableMusic Path="@path"/>
 

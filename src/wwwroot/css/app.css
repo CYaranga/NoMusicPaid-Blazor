@@ -30,3 +30,18 @@ h1:focus {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+
+.player-music {
+    position:relative;
+    top:10px;
+    width:260px;
+    overflow: hidden;
+    direction: ltl;
+    border-top-right-radius: 0.5em 0.5em;
+    border-bottom-right-radius: 1em 0.7em;
+}
+
+.green-audio-player .slider .gap-progress, .green-audio-player .slider .gap-progress .progress__pin {
+    background-color: red;
+}
